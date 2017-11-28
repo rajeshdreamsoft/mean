@@ -20,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
-
+var cors = require('cors')
+app.use(cors())
 const router = express.Router();
 router.use(function(req, res, next) {
     // check header or url parameters or post parameters for token
@@ -45,7 +46,6 @@ router.use(function(req, res, next) {
     }
   });
   app.use('/api', router);
-
 // Set our api routes
 app.use('/api', api);
 
