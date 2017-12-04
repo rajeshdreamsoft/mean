@@ -14,6 +14,7 @@ export class AuthenticationService {
     }
  
     login(username: string, password: string): Observable<boolean> {
+       
         return this.http.post('/authenticate', JSON.stringify({ username: username, password: password }))
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
@@ -21,7 +22,6 @@ export class AuthenticationService {
                 if (token) {
                     // set token property
                     this.token = token;
- alert(token)
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
  
